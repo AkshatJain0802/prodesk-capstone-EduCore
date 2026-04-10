@@ -129,7 +129,7 @@ The database schema is designed around **6 MongoDB collections** organized into 
 - **Business Layer** — `purchases` (many-to-many enrollment junction)
 - **Tracking Layer** — `course_progress` (per-student learning state)
 
-<img width="1397" height="775" alt="ER diagram" src="https://github.com/user-attachments/assets/d1deabd0-b994-4232-a02e-bc0cd9813da1" />")
+<img width="1397" height="775" alt="ER diagram" src="https://github.com/user-attachments/assets/d1deabd0-b994-4232-a02e-bc0cd9813da1" />
 
 ### Collections at a Glance
 
@@ -149,7 +149,7 @@ The database schema is designed around **6 MongoDB collections** organized into 
 **Akshat Jain**
 Fullstack Intern — ProDesk Capstone Program
 
-[![GitHub](https://img.shields.io/badge/GitHub-@yourusername-black?style=flat-square&logo=github)](https://github.com/AkshatJain0802)
+[![GitHub](https://img.shields.io/badge/GitHub-@AkshatJain0802-black?style=flat-square&logo=github)](https://github.com/AkshatJain0802)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/akshat-jain-70233324a)
 
 ---
