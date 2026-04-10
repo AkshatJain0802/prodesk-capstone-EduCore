@@ -128,7 +128,8 @@ The database schema is designed around **6 MongoDB collections** organized into 
 - **Business Layer** — `purchases` (many-to-many enrollment junction)
 - **Tracking Layer** — `course_progress` (per-student learning state)
 
-<img width="1397" height="775" alt="ER diagram" src="https://github.com/user-attachments/assets/d1deabd0-b994-4232-a02e-bc0cd9813da1" />
+![EduCore ER Diagram](./assets/ER diagram.png)
+
 
 ### Collections at a Glance
 
