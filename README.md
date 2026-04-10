@@ -2,7 +2,7 @@
 
 > A full-stack, commercial-grade Learning Management System built with the MERN stack. Educators publish courses. Students enroll, learn, and track progress — all in one platform.
 
-[![GitHub Repo](https://img.shields.io/badge/GitHub-prodesk--capstone--EduCore-black?style=flat-square&logo=github)](https://github.com/AkshatJain0802)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-prodesk--capstone--EduCore-black?style=flat-square&logo=github)](https://github.com/AkshatJain0802/prodesk-capstone-EduCore.git)
 
 ---
 
