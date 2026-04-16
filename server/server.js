@@ -16,7 +16,17 @@ const app = express()
 // Stripe webhook needs raw body — must come BEFORE express.json()
 app.post('/webhooks/stripe', express.raw({ type: 'application/json' }), stripeWebhookHandler)
 
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }))
+const CLIENT_URL = process.env.CLIENT_URL?.replace(/\/$/, '')
+const allowedOrigins = [CLIENT_URL, `${CLIENT_URL}/`].filter(Boolean)
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true)
+    if (allowedOrigins.includes(origin)) return callback(null, true)
+    callback(new Error('Not allowed by CORS'))
+  },
+  credentials: true,
+}))
 app.use(express.json())
 
 // Webhooks

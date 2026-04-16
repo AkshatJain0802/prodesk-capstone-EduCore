@@ -11,7 +11,16 @@ export const protect = async (req, res, next) => {
   const token = authHeader.split(' ')[1]
 
   try {
-    const payload = await verifyToken(token)
+    const result = await verifyToken(token, {
+      secretKey: process.env.CLERK_SECRET_KEY,
+    })
+
+    if (result.errors) {
+      console.error('Clerk verifyToken errors:', result.errors)
+      return res.status(401).json({ message: 'Token invalid or expired', errors: result.errors })
+    }
+
+    const payload = result.data
     const user = await User.findOne({ clerkId: payload.sub })
 
     if (!user) {
@@ -21,6 +30,7 @@ export const protect = async (req, res, next) => {
     req.user = user
     next()
   } catch (error) {
+    console.error('Protect middleware error:', error)
     return res.status(401).json({ message: 'Token invalid or expired' })
   }
 }
