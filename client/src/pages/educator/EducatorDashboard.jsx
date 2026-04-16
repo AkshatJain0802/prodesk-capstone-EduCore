@@ -6,13 +6,18 @@ import Spinner from '../../components/common/Spinner'
 
 export default function EducatorDashboard() {
   const { isSignedIn } = useUser()
-  const { dbUser, authAxios } = useAppContext()
+  const { dbUser, authAxios, profileLoading } = useAppContext()
 
   const [courses,  setCourses]  = useState([])
-  const [loading,  setLoading]  = useState(true)
+  const [loading,  setLoading]  = useState(false)
 
   useEffect(() => {
-    if (!isSignedIn || dbUser?.role !== 'educator') return
+    if (!isSignedIn || !dbUser || dbUser.role !== 'educator') {
+      setLoading(false)
+      return
+    }
+
+    setLoading(true)
     const fetch = async () => {
       try {
         const ax = await authAxios()
@@ -25,7 +30,7 @@ export default function EducatorDashboard() {
       }
     }
     fetch()
-  }, [isSignedIn, dbUser])
+  }, [isSignedIn, dbUser?.role, dbUser?._id])
 
   const togglePublish = async (courseId, current) => {
     try {
@@ -50,6 +55,8 @@ export default function EducatorDashboard() {
       <p className="text-lg font-medium text-gray-700">Please sign in to access the educator panel.</p>
     </div>
   )
+
+  if (profileLoading || !dbUser) return <Spinner size="lg" />
 
   if (dbUser && dbUser.role !== 'educator') return (
     <div className="text-center py-24 max-w-md mx-auto px-4">

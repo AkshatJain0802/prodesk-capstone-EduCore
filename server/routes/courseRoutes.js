@@ -20,11 +20,11 @@ const storage = new CloudinaryStorage({
 const upload = multer({ storage })
 
 router.get('/',           getAllCourses)
+router.get('/educator/my-courses', protect, educatorOnly, getEducatorCourses)
 router.get('/:id',        getCourseById)
 router.post('/',          protect, educatorOnly, upload.single('thumbnail'), createCourse)
 router.put('/:id/publish',protect, educatorOnly, togglePublish)
 router.post('/:id/chapters', protect, educatorOnly, addChapter)
 router.post('/:id/chapters/:chapterId/lectures', protect, educatorOnly, upload.single('video'), addLecture)
-router.get('/educator/my-courses', protect, educatorOnly, getEducatorCourses)
 
 export default router

@@ -15,6 +15,8 @@ const app = express()
 
 // Stripe webhook needs raw body — must come BEFORE express.json()
 app.post('/webhooks/stripe', express.raw({ type: 'application/json' }), stripeWebhookHandler)
+// Clerk webhook also requires the raw payload for signature verification
+app.post('/webhooks/clerk', express.raw({ type: 'application/json' }), clerkWebhookHandler)
 
 const CLIENT_URL = process.env.CLIENT_URL?.replace(/\/$/, '')
 const allowedOrigins = [CLIENT_URL, `${CLIENT_URL}/`].filter(Boolean)
@@ -28,9 +30,6 @@ app.use(cors({
   credentials: true,
 }))
 app.use(express.json())
-
-// Webhooks
-app.post('/webhooks/clerk', clerkWebhookHandler)
 
 // API Routes
 app.use('/api/courses',   courseRoutes)
